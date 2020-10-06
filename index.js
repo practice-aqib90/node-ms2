@@ -35,15 +35,13 @@ app.get('/checkInfo', (req, res) => {
         path: '/getInfo',
         method: 'GET'
       }
+      let response = "";
       const request = http.request(options, result => {
         console.log(`statusCode: ${result.statusCode}`)
       
         result.on('data', d => {
           process.stdout.write(d)
-          res.send({
-              status: 200,
-              data: d
-          })
+          response += d;
         })
       })
       
@@ -54,6 +52,13 @@ app.get('/checkInfo', (req, res) => {
             message: error
         });
       })
+
+      setTimeout(() => {
+        res.send({
+            status: 200,
+            data: JSON.parse(response)
+        })
+      },1200)
       
       request.end();
 })
