@@ -35,7 +35,7 @@ app.get('/checkInfo', (req, res) => {
         path: '/getInfo',
         method: 'GET'
       }
-      const request = https.request(options, result => {
+      const request = http.request(options, result => {
         console.log(`statusCode: ${result.statusCode}`)
       
         result.on('data', d => {
