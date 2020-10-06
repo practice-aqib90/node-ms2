@@ -35,7 +35,7 @@ app.get('/checkInfo', (req, res) => {
         path: '/getInfo',
         method: 'GET'
       }
-      const req = https.request(options, result => {
+      const request = https.request(options, result => {
         console.log(`statusCode: ${result.statusCode}`)
       
         result.on('data', d => {
@@ -47,7 +47,7 @@ app.get('/checkInfo', (req, res) => {
         })
       })
       
-      req.on('error', error => {
+      request.on('error', error => {
         console.error(error)
         res.status(400).send({
             status: 400,
@@ -55,7 +55,7 @@ app.get('/checkInfo', (req, res) => {
         });
       })
       
-      req.end();
+      request.end();
 })
 
 app.listen(PORT, ip);
